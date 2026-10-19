@@ -14,7 +14,7 @@ public class LibraryService {
         public List<Book> findByAuthor(String author) {
         List<Book> result = new ArrayList<>();
         for (Book b : books) {
-            if (b.getAuthor().toLowerCase().contains(author.toLowerCase())) {
+            if (b != null && author != null && b.getAuthor() != null && b.getAuthor().toLowerCase().contains(author.toLowerCase())) {
                 result.add(b);
             }
         }
