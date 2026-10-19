@@ -11,6 +11,15 @@ public class LibraryService {
     public List<Book> getAllBooks() {
         return books;
     }
+        public List<Book> findByAuthor(String author) {
+        List<Book> result = new ArrayList<>();
+        for (Book b : books) {
+            if (b != null && author != null && b.getAuthor() != null && b.getAuthor().toLowerCase().contains(author.toLowerCase())) {
+                result.add(b);
+            }
+        }
+        return result;
+    }
 
     public Book findById(int id) {
         for (Book b : books) {
