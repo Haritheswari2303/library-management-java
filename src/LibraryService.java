@@ -5,6 +5,9 @@ public class LibraryService {
     private List<Book> books = new ArrayList<>();
 
     public void addBook(Book book) {
+        if (book == null) {
+            throw new IllegalArgumentException("Book cannot be null");
+        }
         books.add(book);
     }
 
@@ -23,6 +26,9 @@ public class LibraryService {
 
     public boolean issueBook(int id) {
         Book book = findById(id);
+        if (book == null) {
+            return false;
+        }
         if (book.isAvailable()) {
             book.setAvailable(false);
             return true;
@@ -30,8 +36,12 @@ public class LibraryService {
         return false;
     }
 
-    public void returnBook(int id) {
+    public boolean returnBook(int id) {
         Book book = findById(id);
+        if (book == null) {
+            return false;
+        }
         book.setAvailable(true);
+        return true;
     }
 }
